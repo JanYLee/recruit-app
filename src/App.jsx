@@ -1,17 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 
-export default class App extends Component {
-  render() {
-    const { store, addCounter, deleteCounter, addCounterAsync } = this.props;
-    const num = store.getState();
-    return(
-      <div>
-        <h1>Counter</h1>
-        <p>现在的计数器: {num}</p>
-        <button onClick={() => store.dispatch(addCounter())}>新增计数</button>
-        <button onClick={() => store.dispatch(addCounterAsync())}>新增计数(延迟1秒)</button>
-        <button onClick={() => store.dispatch(deleteCounter())}>减少计数</button>
-      </div>
-    )
-  }
+import { addCounter, deleteCounter, addCounterAsync } from './index.redux';
+
+export default function App(props) {
+  const { num, addCounter, deleteCounter, addCounterAsync } = props;
+  return(
+    <div>
+      <h1>Counter</h1>
+      <p>现在的计数器: {num}</p>
+      <button onClick={addCounter}>新增计数</button>
+      <button onClick={addCounterAsync}>新增计数(延迟1秒)</button>
+      <button onClick={deleteCounter}>减少计数</button>
+    </div>
+  )
 }
+
+const mapStatetoProps = (state) => {
+  return { num: state };
+}
+
+const actionCreators = { addCounter, deleteCounter, addCounterAsync }
+
+App = connect(mapStatetoProps, actionCreators)(App);
