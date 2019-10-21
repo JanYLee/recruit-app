@@ -1,4 +1,3 @@
-
 const ADD_COUNTER = 'add';
 const DELETE_COUNTER = 'delete';
 
@@ -21,7 +20,14 @@ export function addCounter() {
   return { type: ADD_COUNTER };
 }
 
+export function addCounterAsync() {
+  return dispatch => {
+    setTimeout(() => {
+      dispatch(addCounter());
+    }, 1000);
+  };
+}
+
 export function deleteCounter() {
   return { type: DELETE_COUNTER };
 }
-

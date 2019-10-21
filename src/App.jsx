@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 
 export default class App extends Component {
   render() {
-    const { store, addCounter, deleteCounter } = this.props;
+    const { store, addCounter, deleteCounter, addCounterAsync } = this.props;
     const num = store.getState();
     return(
       <div>
         <h1>Counter</h1>
         <p>现在的计数器: {num}</p>
         <button onClick={() => store.dispatch(addCounter())}>新增计数</button>
+        <button onClick={() => store.dispatch(addCounterAsync())}>新增计数(延迟1秒)</button>
         <button onClick={() => store.dispatch(deleteCounter())}>减少计数</button>
       </div>
     )
