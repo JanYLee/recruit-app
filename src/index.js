@@ -9,9 +9,8 @@ import { counter } from './index.redux';
 
 import App from './App.jsx';
 
-const reduxDevTools = window.devToolsExtension
-  ? window.devToolsExtension()
-  : f => f;
+const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : undefined;
+
 // 新建store
 const store = createStore(
   counter,
