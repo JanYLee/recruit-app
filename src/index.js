@@ -8,6 +8,9 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { counter } from './index.redux';
 
 import App from './App.jsx';
+import Login from './container/login/Login.jsx';
+import Register from './container/register/Register.jsx';
+import './config.js';
 
 const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : undefined;
 
@@ -25,6 +28,8 @@ ReactDOM.render(
     <BrowserRouter>
       <Switch>
         <Route path='/' exact component={App}></Route>
+        <Route path='/login' exact component={Login}></Route>
+        <Route path='/register' exact component={Register}></Route>
       </Switch>
     </BrowserRouter>
   </Provider>,
