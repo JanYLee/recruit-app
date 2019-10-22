@@ -48,6 +48,7 @@
     "react-dev-utils": "^9.1.0",
     "react-dom": "^16.10.2",
     "react-redux": "^7.1.1",
+    "react-router-dom": "^5.1.2",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
     "resolve": "1.12.0",
@@ -136,8 +137,19 @@
       "react-app"
     ],
     "plugins": [
-      ["@babel/plugin-proposal-decorators", { "legacy": true }],
-      ["import", { "libraryName": "antd-mobile", "style": "css" }]
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      [
+        "import",
+        {
+          "libraryName": "antd-mobile",
+          "style": "css"
+        }
+      ]
     ]
   },
   "devDependencies": {
