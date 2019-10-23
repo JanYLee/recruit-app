@@ -1,0 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.Error-Msg {
+  color: #ff5500;
+  padding: 15px 0 0 15px;
+}
