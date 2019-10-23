@@ -7,22 +7,27 @@ mongoose.connection.on('connected', function() {
   console.log('mongodb connect success');
 })
 
-// User.create({
-//   user: 'dio',
-//   age: 18
-// }, function(err, doc) {
-//   console.log(err?err:doc);
-// })
+const models = {
+  user: {
+    'user': { type: String, require: true },
+    'pwd': { type: String, require: true },
+    'type': { type: String, require: true },
+    'avatar': { type: String }, // 头像
+    'desc': { type: String }, // 简介
+    'title': { type: String }, // 职位
+    // 下面是招聘者才有的属性
+    'company': { type: String },
+    'money': { type: String },
+  },
+  chat: {
 
-// User.update({'user': 'jotaro'}, {'$set': {age: 20}}, function(err, doc) {
-//   console.log(err?err:doc);
-// })
+  }
+}
 
-// User.remove({age: 18}, function(err, doc) {
-//   console.log(err?err:doc);
-// })
+for(let m in models) {
+  mongoose.model(m, new mongoose.Schema(models[m]))
+}
 
-const User = mongoose.model('user', new mongoose.Schema({
-  user: {type: String, required: true},
-  age: {type: Number, required: true}
-}))
+module.exports = {
+  getModel: name => mongoose.model(name)
+}
