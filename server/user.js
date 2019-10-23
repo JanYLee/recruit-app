@@ -9,6 +9,22 @@ Router.get('/list', function(req, res){
   })  
 })
 
+Router.post('/register', function(req, res) {
+  console.log('data:', req.body);
+  const { user, pwd, type } = req.body;
+  User.find({ user }, function(err, doc) {
+    if(doc.length) {
+      return res.json({ code: 1, msg: '用户名重复' });
+    }
+    User.create({ user, pwd, type }, function(err, doc) {
+      if(err) {
+        return res.json({ code: 1, msg: '后端出错了' });
+      }
+      return res.json({code: 0});
+    })
+  })
+})
+
 Router.get('/info', function(req, res){
   return res.json({code: 1})
 })
