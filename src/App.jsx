@@ -2,18 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { addCounter, deleteCounter, addCounterAsync } from './index.redux';
-import axios from 'axios';
 
 @connect(
   state => ({num: state}), 
   { addCounter, deleteCounter, addCounterAsync }
 )
 class App extends React.Component {
-
-  componentDidMount() {
-    axios.get('/data')
-      .then(res => console.log(res));
-  }
 
   render() {
     const { num, addCounter, deleteCounter, addCounterAsync } = this.props;

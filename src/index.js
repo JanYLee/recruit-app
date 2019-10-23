@@ -27,12 +27,10 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Switch>
         <AuthRoute></AuthRoute>
         <Route path='/' exact component={App}></Route>
         <Route path='/login' exact component={Login}></Route>
         <Route path='/register' exact component={Register}></Route>
-      </Switch>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')
