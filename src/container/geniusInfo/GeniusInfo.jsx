@@ -10,15 +10,13 @@ import AvatarSelector from '../../component/avatarSelector/AvatarSelector.jsx';
   state => state.user,
   { update }
 )
-class BossInfo extends Component {
+class GeniusInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
       avatar: '',
       title: '',
-      company: '',
-      money: '',
-      desc: '',
+      desc: ''
     };
   }
 
@@ -32,23 +30,19 @@ class BossInfo extends Component {
     const { redirectTo, update, location } = this.props;
     return (
       <div>
-        {redirectTo && redirectTo !== location.pathname ? <Redirect to={redirectTo}></Redirect> : null}
-        <NavBar mode='dark'>BOSS完善信息页</NavBar>
+        {redirectTo && redirectTo !== location.pathname ? (
+          <Redirect to={redirectTo}></Redirect>
+        ) : null}
+        <NavBar mode='dark'>应聘者完善信息页</NavBar>
         <AvatarSelector
           selectAvatar={imgName => this.onChange('avatar', imgName)}
         ></AvatarSelector>
         <InputItem onChange={v => this.onChange('title', v)}>
-          招聘职位
-        </InputItem>
-        <InputItem onChange={v => this.onChange('company', v)}>
-          公司名称
-        </InputItem>
-        <InputItem onChange={v => this.onChange('money', v)}>
-          职位薪资
+          求职职位
         </InputItem>
         <TextareaItem
           autoHeight={true}
-          title='职位要求'
+          title='个人简介'
           onChange={v => this.onChange('desc', v)}
         ></TextareaItem>
         <Button
@@ -64,4 +58,4 @@ class BossInfo extends Component {
   }
 }
 
-export default BossInfo;
+export default GeniusInfo;

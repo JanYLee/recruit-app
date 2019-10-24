@@ -11,6 +11,7 @@ import AuthRoute from './component/authRoute/AuthRoute.jsx';
 import Login from './container/login/Login.jsx';
 import Register from './container/register/Register.jsx';
 import BossInfo from './container/bossInfo/BossInfo.jsx';
+import GeniusInfo from './container/geniusInfo/GeniusInfo.jsx';
 import './config.js';
 import './index.css';
 
@@ -33,6 +34,7 @@ ReactDOM.render(
       <AuthRoute></AuthRoute>
       <Switch>
         <Route path='/bossinfo' exact component={BossInfo}></Route>
+        <Route path='/geniusinfo' exact component={GeniusInfo}></Route>
         <Route path='/login' exact component={Login}></Route>
         <Route path='/register' exact component={Register}></Route>
       </Switch>
