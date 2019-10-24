@@ -10,10 +10,13 @@ import AuthRoute from './component/authRoute/AuthRoute.jsx';
 
 import Login from './container/login/Login.jsx';
 import Register from './container/register/Register.jsx';
+import BossInfo from './container/bossInfo/BossInfo.jsx';
 import './config.js';
 import './index.css';
 
-const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : undefined;
+const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__
+  ? window.__REDUX_DEVTOOLS_EXTENSION__()
+  : undefined;
 
 // 新建store
 const store = createStore(
@@ -27,9 +30,12 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-        <AuthRoute></AuthRoute>
+      <AuthRoute></AuthRoute>
+      <Switch>
+        <Route path='/bossinfo' exact component={BossInfo}></Route>
         <Route path='/login' exact component={Login}></Route>
         <Route path='/register' exact component={Register}></Route>
+      </Switch>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')
