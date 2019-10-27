@@ -17,7 +17,7 @@ class Register extends Component {
       user: '',
       pwd: '',
       repeatPwd: '',
-      type: 'genuis',// 或者boss
+      type: 'genius',// 或者boss
     };
     this.handleRegister = this.handleRegister.bind(this);
   }

@@ -6,3 +6,15 @@
   color: #ff5500;
   padding: 15px 0 0 15px;
 }
+
+.am-tab-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.am-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
