@@ -5,6 +5,7 @@ import { NavBar } from 'antd-mobile';
 
 import NavLinkBar from '../navLink/NavLink.jsx';
 import Boss from '../boss/Boss.jsx';
+import Genius from '../genius/Genius.jsx';
 
 @connect(state => state)
 class Dashboard extends Component {
@@ -25,7 +26,7 @@ class Dashboard extends Component {
         text: '招聘者',
         icon: 'genius',
         title: '招聘者列表',
-        component: Boss,
+        component: Genius,
         hide: user.type === 'boss'
       },
       {
