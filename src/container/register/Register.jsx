@@ -59,8 +59,8 @@ class Register extends Component {
           </List>
           <WhiteSpace />
           <RadioItem
-            checked={type === 'genuis'}
-            onClick={v => this.handleChange('type', 'genuis')}
+            checked={type === 'genius'}
+            onClick={v => this.handleChange('type', 'genius')}
           >
             求职者
           </RadioItem>

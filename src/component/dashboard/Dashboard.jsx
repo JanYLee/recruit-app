@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
 import { NavBar } from 'antd-mobile';
-import NavLinkBar from '../navLink/NavLink.jsx';
 
-function Boss() {
-  return <h1>Boss页</h1>;
-}
+import NavLinkBar from '../navLink/NavLink.jsx';
+import Boss from '../boss/Boss.jsx';
 
 @connect(state => state)
 class Dashboard extends Component {
@@ -46,11 +45,17 @@ class Dashboard extends Component {
     ];
     return (
       <div>
-        <NavBar mode='dark'>
+        <NavBar mode='dark' className='fixed-header'>
           {navList.find(i => i.path === pathname).title}
         </NavBar>
-        {/* <Router></Router> */}
-        <NavLinkBar classname='Am-TabBar' data={navList}></NavLinkBar>
+        <div style={{marginTop: 45}}>
+          <Switch>
+            {navList.map(v => (
+              <Route key={v.path} path={v.path} component={v.component} />
+            ))}
+          </Switch>
+        </div>
+        <NavLinkBar className='tab-bar-bottom' data={navList}></NavLinkBar>
       </div>
     );
   }
