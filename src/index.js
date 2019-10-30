@@ -16,17 +16,15 @@ import Dashboard from './component/dashboard/Dashboard.jsx';
 import './config.js';
 import './index.css';
 
-const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__
-  ? window.__REDUX_DEVTOOLS_EXTENSION__()
-  : undefined;
-
 // 新建store
 const store = createStore(
   reducer,
-  compose(
-    applyMiddleware(thunk),
-    reduxDevTools
-  )
+  window.__REDUX_DEVTOOLS_EXTENSION__
+    ? compose(
+        applyMiddleware(thunk),
+        window.__REDUX_DEVTOOLS_EXTENSION__()
+      )
+    : applyMiddleware(thunk)
 );
 
 ReactDOM.render(
