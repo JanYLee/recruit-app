@@ -4,6 +4,7 @@ const utils = require('utility');
 
 const model = require('./model');
 const User = model.getModel('user');
+const Chat = model.getModel('chat');
 const _filter = { pwd: 0, __v: 0 }; // 去除数据库返回中多余显示
 
 Router.get('/list', function(req, res) {
@@ -77,6 +78,16 @@ Router.post('/update', function(req, res) {
     return res.json({ code: 0, data });
   });
 });
+
+Router.get('/getmsglist', function (req, res) {
+  const user = req.cookies.user;
+  const filter = {'$or': [{from: user, to: user}]};
+  Chat.find({}, function  (err, doc) {
+    if(!err) {
+      return res.json({code: 0, msgs: doc});
+    }
+  })
+})
 
 module.exports = Router;
 
