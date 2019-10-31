@@ -7,12 +7,12 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import reducer from './reducer';
 import AuthRoute from './component/authRoute/AuthRoute.jsx';
-
 import Login from './container/login/Login.jsx';
 import Register from './container/register/Register.jsx';
 import BossInfo from './container/bossInfo/BossInfo.jsx';
 import GeniusInfo from './container/geniusInfo/GeniusInfo.jsx';
 import Dashboard from './component/dashboard/Dashboard.jsx';
+import Chat from './component/chat/Chat.jsx';
 import './config.js';
 import './index.css';
 
@@ -36,6 +36,7 @@ ReactDOM.render(
         <Route path='/geniusinfo' exact component={GeniusInfo}></Route>
         <Route path='/login' exact component={Login}></Route>
         <Route path='/register' exact component={Register}></Route>
+        <Route path='/chat/:user' exact component={Chat}></Route>
         <Route component={Dashboard}></Route>
       </Switch>
     </BrowserRouter>
