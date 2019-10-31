@@ -45,10 +45,11 @@ class Dashboard extends Component {
         component: User
       }
     ];
-    return (
+    const cur = navList.find(i => i.path === pathname);
+    return cur ? (
       <div>
         <NavBar mode='dark' className='fixed-header'>
-          {navList.find(i => i.path === pathname).title}
+          {cur.title}
         </NavBar>
         <div style={{marginTop: 45}}>
           <Switch>
@@ -59,7 +60,7 @@ class Dashboard extends Component {
         </div>
         <NavLinkBar className='tab-bar-bottom' data={navList}></NavLinkBar>
       </div>
-    );
+    ) : null;
   }
 }
 
