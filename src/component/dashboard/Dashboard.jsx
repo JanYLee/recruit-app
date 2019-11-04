@@ -7,9 +7,18 @@ import NavLinkBar from '../navLink/NavLink.jsx';
 import Boss from '../boss/Boss.jsx';
 import Genius from '../genius/Genius.jsx';
 import User from '../user/User.jsx';
+import { getMsgList, recvMsg } from '../../redux/chat.redux';
 
-@connect(state => state)
+@connect(
+  state => state,
+  { getMsgList, recvMsg }
+)
 class Dashboard extends Component {
+  componentDidMount() {
+    const { getMsgList, recvMsg } = this.props;
+    getMsgList();
+    recvMsg();
+  }
   render() {
     const { user, location } = this.props;
     const { pathname } = location;
@@ -51,7 +60,7 @@ class Dashboard extends Component {
         <NavBar mode='dark' className='fixed-header'>
           {cur.title}
         </NavBar>
-        <div style={{marginTop: 45}}>
+        <div style={{ marginTop: 45 }}>
           <Switch>
             {navList.map(v => (
               <Route key={v.path} path={v.path} component={v.component} />
