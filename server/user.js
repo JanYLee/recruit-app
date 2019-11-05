@@ -9,7 +9,7 @@ const _filter = { pwd: 0, __v: 0 }; // 去除数据库返回中多余显示
 
 Router.get('/list', function(req, res) {
   const { type } = req.query;
-  // User.remove({}, (e, d) => {});
+  // Chat.remove({}, (e, d) => {});
   User.find({ type }, function(err, doc) {
     return res.json({code: 0, data: doc});
   });
@@ -80,11 +80,17 @@ Router.post('/update', function(req, res) {
 });
 
 Router.get('/getmsglist', function (req, res) {
-  const user = req.cookies.user;
-  const filter = {'$or': [{from: user, to: user}]};
-  Chat.find({}, function  (err, doc) {
+  const user = req.cookies.userid;
+  let users = {};
+  User.find({}, function (err, doc) {
+    doc.forEach(v => {
+      users[v._id] = {name: v.user, avatar: v.avatar};
+    })
+  })
+  const filter = {'$or': [{from: user}, {to: user}]};
+  Chat.find(filter, function  (err, doc) {
     if(!err) {
-      return res.json({code: 0, msgs: doc});
+      return res.json({code: 0, msgs: doc, users});
     }
   })
 })
