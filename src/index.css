@@ -35,3 +35,11 @@
   bottom: 0;
   width: 100%;
 }
+
+.stick-footer .am-grid-icon {
+  display: none;
+}
+
+.stick-footer .am-grid-text {
+  margin-top: 0;
+}
