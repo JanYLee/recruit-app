@@ -27,7 +27,6 @@ Router.post('/login', function(req, res) {
 });
 
 Router.post('/register', function(req, res) {
-  console.log('data:', req.body);
   const { user, pwd, type } = req.body;
   User.find({ user }, function(err, doc) {
     if (doc.length) {

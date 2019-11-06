@@ -24,7 +24,6 @@ class AuthRoute extends Component {
     if (publicList.includes(pathname)) return;
     axios.get('/user/info').then(res => {
       if (res.status === 200) {
-        console.log('res:', res.data);
         if (res.data.code === 0) {
           loadData(res.data.data);
         } else {
