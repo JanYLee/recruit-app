@@ -10,7 +10,7 @@ class Msg extends Component {
 
   render() {
     // 根据聊天用户分组
-    const { chat, user } = this.props;
+    const { chat, user, history } = this.props;
     const msgGroup = {};
     chat.chatmsg.forEach(v => {
       msgGroup[v.chatid] = msgGroup[v.chatid] || [];
@@ -33,6 +33,10 @@ class Msg extends Component {
               <List.Item
                 extra={<Badge text={unreadNum} />}
                 thumb={require(`../img/${chat.users[targetId].avatar}.jpg`)}
+                arrow='horizontal'
+                onClick={() => {
+                  history.push(`/chat/${targetId}`)
+                }}
               >
                 {lastItem.content}
                 <List.Item.Brief>{chat.users[targetId].name}</List.Item.Brief>
