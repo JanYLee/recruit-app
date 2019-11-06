@@ -11,7 +11,7 @@ Router.get('/list', function(req, res) {
   const { type } = req.query;
   // Chat.remove({}, (e, d) => {});
   User.find({ type }, function(err, doc) {
-    return res.json({code: 0, data: doc});
+    return res.json({ code: 0, data: doc });
   });
 });
 
@@ -79,21 +79,37 @@ Router.post('/update', function(req, res) {
   });
 });
 
-Router.get('/getmsglist', function (req, res) {
+Router.get('/getmsglist', function(req, res) {
   const user = req.cookies.userid;
   let users = {};
-  User.find({}, function (err, doc) {
+  User.find({}, function(err, doc) {
     doc.forEach(v => {
-      users[v._id] = {name: v.user, avatar: v.avatar};
-    })
-  })
-  const filter = {'$or': [{from: user}, {to: user}]};
-  Chat.find(filter, function  (err, doc) {
-    if(!err) {
-      return res.json({code: 0, msgs: doc, users});
+      users[v._id] = { name: v.user, avatar: v.avatar };
+    });
+  });
+  const filter = { $or: [{ from: user }, { to: user }] };
+  Chat.find(filter, function(err, doc) {
+    if (!err) {
+      return res.json({ code: 0, msgs: doc, users });
     }
-  })
-})
+  });
+});
+
+Router.post('/readmsg', function(req, res) {
+  const userid = req.cookies.userid;
+  const { from } = req.body;
+  Chat.update(
+    { from, to: userid },
+    { $set: { read: true } },
+    { multi: true },
+    function(err, doc) {
+      if (!err) {
+        return res.json({ code: 0, num: doc.nModified });
+      }
+      return res.json({ code: 1, msg: '修改失败' });
+    }
+  );
+});
 
 module.exports = Router;
 

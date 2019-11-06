@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { List, InputItem, NavBar, Icon, Grid } from 'antd-mobile';
 import { connect } from 'react-redux';
 
-import { getMsgList, sendMsg, recvMsg } from '../../redux/chat.redux';
+import { getMsgList, sendMsg, recvMsg, readMsg } from '../../redux/chat.redux';
 import { getChatId } from '../../utils';
 
 const emoji = '😀 😁 😂 😃 😄 😅 😆 😉 😊 😋 😎 😍 😘 😗 😙 😚 ☺ 😇 😐 😑 😶 😏 😣 😥 😮 😯 😪 😫 😴 😌 😛 😜 😝 😒 😓 😔 😕 😲 😷 😖 😞 😟 😤 😢 😭 😦 😧 😨 😬 😰 😱 😳 😵 😡 😠'
@@ -12,7 +12,7 @@ const emoji = '😀 😁 😂 😃 😄 😅 😆 😉 😊 😋 😎 😍 😘 
 
 @connect(
   state => state,
-  { getMsgList, sendMsg, recvMsg }
+  { getMsgList, sendMsg, recvMsg, readMsg }
 )
 class Chat extends Component {
   constructor(props) {
@@ -27,10 +27,18 @@ class Chat extends Component {
       recvMsg();
     }
 
+
     // 用于修复Grid组件固定4行产生的bug
     setTimeout(function() {
       window.dispatchEvent(new Event('resize'));
     }, 0);
+  }
+
+  componentWillUnmount() {
+    // 离开时标记已读
+    const { readMsg, match } = this.props;
+    const to = match.params.user;
+    readMsg(to);
   }
 
   fixCarousel() {
