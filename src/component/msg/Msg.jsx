@@ -16,7 +16,11 @@ class Msg extends Component {
       msgGroup[v.chatid] = msgGroup[v.chatid] || [];
       msgGroup[v.chatid].push(v);
     });
-    const chatList = Object.values(msgGroup);
+    const chatList = Object.values(msgGroup).sort((prev, next) => {
+      const prev_last = this.getLast(prev).create_time;
+      const next_last = this.getLast(next).create_time;
+      return next_last - prev_last;
+    });
     return (
       <div>
         {chatList.map(v => {
@@ -25,9 +29,8 @@ class Msg extends Component {
           if (!targetId) return null;
           const unreadNum = v.filter(v => !v.read && v.to === user._id).length;
           return (
-            <List>
+            <List key={lastItem._id}>
               <List.Item
-                key={lastItem._id}
                 extra={<Badge text={unreadNum} />}
                 thumb={require(`../img/${chat.users[targetId].avatar}.jpg`)}
               >
