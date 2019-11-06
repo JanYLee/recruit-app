@@ -7,6 +7,7 @@ import NavLinkBar from '../navLink/NavLink.jsx';
 import Boss from '../boss/Boss.jsx';
 import Genius from '../genius/Genius.jsx';
 import User from '../user/User.jsx';
+import Msg from '../msg/Msg.jsx';
 import { getMsgList, recvMsg } from '../../redux/chat.redux';
 
 @connect(
@@ -46,7 +47,7 @@ class Dashboard extends Component {
         text: '消息',
         icon: 'msg',
         title: '消息列表',
-        component: Boss
+        component: Msg
       },
       {
         path: '/me',
